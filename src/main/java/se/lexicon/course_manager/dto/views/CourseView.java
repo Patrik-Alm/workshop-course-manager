@@ -13,6 +13,7 @@ public class CourseView {
     private List<StudentView> students;
 
     public CourseView(int id, String courseName, LocalDate startDate, int weekDuration, List<StudentView> students) {
+
         this.id = id;
         this.courseName = courseName;
         this.startDate = startDate;
