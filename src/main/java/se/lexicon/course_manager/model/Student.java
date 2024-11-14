@@ -3,7 +3,7 @@ package se.lexicon.course_manager.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-// TODO implement model
+
 public class Student implements Serializable {
 
     private Integer id;
