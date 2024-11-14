@@ -69,7 +69,7 @@ public class Student implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Objects.equals(id, student.id) || Objects.equals(name, student.name) || Objects.equals(email, student.email) || Objects.equals(address, student.address);
+        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(email, student.email) && Objects.equals(address, student.address);
     }
 
     @Override

@@ -117,7 +117,7 @@ public class Course implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Course course = (Course) o;
-        return Objects.equals(id, course.id) || Objects.equals(courseName, course.courseName) || Objects.equals(startDate, course.startDate) || Objects.equals(weekDuration, course.weekDuration) || Objects.equals(students, course.students);
+        return Objects.equals(id, course.id) && Objects.equals(courseName, course.courseName) && Objects.equals(startDate, course.startDate) && Objects.equals(weekDuration, course.weekDuration) && Objects.equals(students, course.students);
     }
 
     @Override

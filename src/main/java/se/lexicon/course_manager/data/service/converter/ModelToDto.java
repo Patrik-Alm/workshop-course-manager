@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
-// TODO Convert model -> view & models -> views
+
 
 @Component
 public class ModelToDto implements Converters {
@@ -38,16 +38,28 @@ public class ModelToDto implements Converters {
 
         while (itr.hasNext()) {
 
-            //TODO add null pointer check
 
-            courseViews.add(new CourseView(itr.next().getId(), itr.next().getCourseName(), itr.next().getStartDate(), itr.next().getWeekDuration(), studentsToStudentViews(itr.next().getStudents())));
-
+            if (itr.next() != null) {
+                courseViews.add(new CourseView(itr.next().getId(), itr.next().getCourseName(), itr.next().getStartDate(), itr.next().getWeekDuration(), studentsToStudentViews(itr.next().getStudents())));
+            }
         }
         return courseViews;
     }
 
     @Override
     public List<StudentView> studentsToStudentViews(Collection<Student> students) {
-        return null;
+
+        List<StudentView> studentViews = null;
+
+        Iterator<Student> itr = students.iterator();
+
+        while (itr.hasNext()) {
+
+            if (itr.next() != null) {
+                studentViews.add(new StudentView(itr.next().getId(), itr.next().getName(), itr.next().getEmail(), itr.next().getAddress()));
+            }
+
+        }
+        return studentViews;
     }
 }
