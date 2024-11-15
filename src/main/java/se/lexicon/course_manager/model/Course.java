@@ -41,6 +41,12 @@ public class Course implements Serializable {
         this.startDate = startDate;
     }
 
+    public Course(Integer id, String courseName, LocalDate startDate, Integer weekDuration) {
+
+        this(id, courseName, startDate);
+        this.weekDuration = weekDuration;
+    }
+
 
     public Integer getId() {
 

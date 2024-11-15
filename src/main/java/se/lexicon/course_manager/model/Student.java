@@ -25,7 +25,7 @@ public class Student implements Serializable {
     }
 
     public Integer getId() {
-
+        if (this.id == null) return null;
         return id;
     }
 

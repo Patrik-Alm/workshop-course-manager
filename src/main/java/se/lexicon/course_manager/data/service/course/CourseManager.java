@@ -80,6 +80,9 @@ public class CourseManager implements CourseService {
 
     @Override
     public CourseView findById(int id) {
+
+        if (courseDao.findById(id) == null) {return null;}
+
         return converters.courseToCourseView(courseDao.findById(id));
     }
 

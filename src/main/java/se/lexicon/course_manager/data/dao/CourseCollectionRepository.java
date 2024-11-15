@@ -30,17 +30,15 @@ public class CourseCollectionRepository implements CourseDao {
         Course localCourse = new Course(localId, courseName, startDate);
         localCourse.setWeekDuration(weekDuration);
 
-        return localCourse;
+        return courses.add(localCourse) ? localCourse : null;
     }
 
     @Override
     public Course findById(int id) {
 
-        Iterator<Course> itr = courses.iterator();
-
-        while (itr.hasNext()) {
-            if (id == (itr.next().getId())) {
-                return itr.next();
+        for (Course course : courses){
+            if (id == course.getId()) {
+                return course;
             }
         }
         return null;
@@ -49,11 +47,11 @@ public class CourseCollectionRepository implements CourseDao {
     @Override
     public Collection<Course> findByNameContains(String name) {
 
-        Iterator<Course> itr = courses.iterator();
 
-        while (itr.hasNext()) {
 
-            if (itr.next().getCourseName().equalsIgnoreCase(name)) {
+       for (Course course : courses) {
+
+            if (course.getCourseName().equalsIgnoreCase(name)) {
 
                 return courses;
             }
@@ -68,9 +66,9 @@ public class CourseCollectionRepository implements CourseDao {
 
         Iterator<Course> itr = courses.iterator();
 
-        while (itr.hasNext()) {
+        for (Course course : courses) {
 
-            period = Period.between((itr.next().getStartDate()), end);
+            period = Period.between((course.getStartDate()), end);
 
             if (period.getDays() > 0) {
 
@@ -84,11 +82,9 @@ public class CourseCollectionRepository implements CourseDao {
     public Collection<Course> findByDateAfter(LocalDate start) {
         Period period;
 
-        Iterator<Course> itr = courses.iterator();
+        for (Course course : courses) {
 
-        while (itr.hasNext()) {
-
-            period = Period.between(start, itr.next().getStartDate());
+            period = Period.between(start, course.getStartDate());
 
             if (period.getDays() > 0) {
 
@@ -107,21 +103,13 @@ public class CourseCollectionRepository implements CourseDao {
     @Override
     public Collection<Course> findByStudentId(int studentId) {
 
-        Iterator<Course> itr = courses.iterator();
+        for (Course course : courses) {
 
+            for (Student student : course.getStudents()) {
 
-        while (itr.hasNext()) {
-
-
-            Iterator<Student> itr2 = itr.next().getStudents().iterator();
-
-            while (itr2.hasNext()) {
-
-
-                if (itr2.next().getId() == studentId) {
+                if (student.getId() == studentId) {
 
                     return courses;
-
                 }
             }
         }

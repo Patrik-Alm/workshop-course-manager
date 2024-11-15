@@ -49,4 +49,12 @@ public class StudentTest {
 
         }
 
+        @Test
+    void testGetId() {
+            Student student = new Student(10);
+
+            assertEquals(10, student.getId());
+
+        }
+
 }

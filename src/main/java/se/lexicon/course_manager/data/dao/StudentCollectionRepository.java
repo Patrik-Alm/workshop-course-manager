@@ -32,17 +32,16 @@ public class StudentCollectionRepository implements StudentDao {
         localStudent.setEmail(email);
         localStudent.setAddress(address);
 
-        return localStudent;
+        return students.add(localStudent) ? localStudent : null;
     }
 
     @Override
     public Student findByEmailIgnoreCase(String email) {
 
-        Iterator<Student> itr = students.iterator();
 
-        while (itr.hasNext()) {
-        if (email.equalsIgnoreCase(itr.next().getEmail())) {
-            return itr.next();
+        for (Student student : students) {
+        if (email.equalsIgnoreCase(student.getEmail())) {
+            return student;
             }
         }
         return null;
@@ -51,11 +50,9 @@ public class StudentCollectionRepository implements StudentDao {
     @Override
     public Collection<Student> findByNameContains(String name) {
 
-        Iterator<Student> itr = students.iterator();
+        for (Student student : students) {
 
-        while (itr.hasNext()) {
-
-            if (itr.next().getName().equalsIgnoreCase(name)) {
+            if (student.getName().equalsIgnoreCase(name)) {
 
                 return students;
             }
@@ -68,9 +65,9 @@ public class StudentCollectionRepository implements StudentDao {
 
         Iterator<Student> itr = students.iterator();
 
-        while (itr.hasNext()) {
-            if (id == (itr.next().getId())) {
-                return itr.next();
+        for (Student student : students) {
+            if (id == (student.getId())) {
+                return student;
             }
         }return null;
     }
